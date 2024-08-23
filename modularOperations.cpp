@@ -9,3 +9,11 @@ llt mod_exp(llt base, llt exp, llt mod) {
     }
     return result;
 }
+
+llt modMultiply(llt a, llt b) {
+    return ((a % MOD) * (b % MOD) % MOD;
+}
+
+llt modSum(llt a, llt b) {
+    return (a % MOD + b % MOD) % MOD;
+}

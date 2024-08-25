@@ -3,6 +3,17 @@
 using namespace std;
 #define llt long long int
 #define MOD 1000000007
+#define INF 1e18
+#define nline "\n"
+#define pb push_back
+#define ppb pop_back
+#define mp make_pair
+#define ff first
+#define ss second
+#define PI 3.141592653589793238462
+#define set_bits __builtin_popcountll
+#define sz(x) ((int)(x).size())
+#define all(x) (x).begin(), (x).end()
 
 #define debug(x) cerr << #x<<" "; _print(x); cerr << endl;
 

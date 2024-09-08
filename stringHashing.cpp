@@ -14,7 +14,6 @@ struct Hashing{
         inversePowersOfBase.resize(primes);
         s = a;
         n = s.length(); 
-        ll
         for(int i = 0; i < sz(hashPrimes); i++) {
             powersOfBase[i].resize(n + 1);
             inversePowersOfBase[i].resize(n + 1);

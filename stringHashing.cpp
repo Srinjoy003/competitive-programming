@@ -2,11 +2,11 @@ struct Hashing{
     string s;
     int n;
     int primes;
-    vector<ll> hashPrimes = {1000000009, 100000007};
-    const ll base = 31;
-    vector<vector<ll>> hashValues;
-    vector<vector<ll>> powersOfBase;
-    vector<vector<ll>> inversePowersOfBase;
+    vector<llt> hashPrimes = {1000000009, 100000007};
+    const llt base = 31;
+    vector<vector<llt>> hashValues;
+    vector<vector<llt>> powersOfBase;
+    vector<vector<llt>> inversePowersOfBase;
     Hashing(string a){
         primes = sz(hashPrimes);
         hashValues.resize(primes);
@@ -14,6 +14,7 @@ struct Hashing{
         inversePowersOfBase.resize(primes);
         s = a;
         n = s.length(); 
+        ll
         for(int i = 0; i < sz(hashPrimes); i++) {
             powersOfBase[i].resize(n + 1);
             inversePowersOfBase[i].resize(n + 1);
@@ -34,11 +35,11 @@ struct Hashing{
             }
         }
     }
-    vector<ll> substringHash(int l, int r){
-        vector<ll> hash(primes);
+    vector<llt> substringHash(int l, int r){
+        vector<llt> hash(primes);
         for(int i = 0; i < primes; i++){
-            ll val1 = hashValues[i][r];
-            ll val2 = l > 0 ? hashValues[i][l - 1] : 0LL;
+            llt val1 = hashValues[i][r];
+            llt val2 = l > 0 ? hashValues[i][l - 1] : 0LL;
             hash[i] = mod_mul(mod_sub(val1, val2, hashPrimes[i]), inversePowersOfBase[i][l], hashPrimes[i]);
         }
         return hash;

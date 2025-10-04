@@ -62,6 +62,39 @@ llt queryMin(vector<llt>& tree, llt node, llt start, llt end, llt L, llt R) {
     return min(leftQuery, rightQuery);
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------------
+
+const llt N = 200005;
+llt seg[4*N];
+
+void build(llt idx, llt l, llt r, vector <llt>& arr){
+
+    if (l == r){
+        seg[idx] = arr[l];
+        return;
+    }
+
+    llt mid = l + (r - l) / 2;
+
+    build(idx*2, l, mid, arr);
+    build(idx*2 + 1, mid+1, r, arr);
+
+    seg[idx]= gcd(seg[idx*2], seg[idx*2 + 1]);
+}
+
+llt query(llt idx, llt ql, llt qr, llt l, llt r){
+    if (qr < l || ql > r) return 0;
+
+    if (ql <= l && qr >= r) return seg[idx];
+
+    llt mid = l + (r - l) / 2;
+
+    return gcd(query(idx*2, ql, qr, l, mid), query(idx*2 + 1, ql, qr, mid+1, r));
+
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int main() {
  
     llt n, q, l, r;

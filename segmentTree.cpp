@@ -28,6 +28,24 @@ llt queryMax(vector<llt>& tree, llt node, llt start, llt end, llt L, llt R) {
     return max(leftQuery, rightQuery);
 }
 
+void updateMaxTree(vector<llt>& tree, llt node, llt start, llt end,
+                   llt idx, llt val) {
+    if (start == end) {
+        tree[node] = val;
+        return;
+    }
+
+    llt mid = start + (end - start) / 2;
+
+    if (idx <= mid)
+        updateMaxTree(tree, 2 * node + 1, start, mid, idx, val);
+    else
+        updateMaxTree(tree, 2 * node + 2, mid + 1, end, idx, val);
+
+    tree[node] = max(tree[2 * node + 1], tree[2 * node + 2]);
+}
+
+
 
 // ---------------Min Tree ---------------------------------------------------------------------------
 
@@ -61,6 +79,24 @@ llt queryMin(vector<llt>& tree, llt node, llt start, llt end, llt L, llt R) {
     llt rightQuery = queryMin(tree, 2 * node + 2, mid + 1, end, L, R);
     return min(leftQuery, rightQuery);
 }
+
+void updateMinTree(vector<llt>& tree, llt node, llt start, llt end,
+                   llt idx, llt val) {
+    if (start == end) {
+        tree[node] = val;
+        return;
+    }
+
+    llt mid = start + (end - start) / 2;
+
+    if (idx <= mid)
+        updateMinTree(tree, 2 * node + 1, start, mid, idx, val);
+    else
+        updateMinTree(tree, 2 * node + 2, mid + 1, end, idx, val);
+
+    tree[node] = min(tree[2 * node + 1], tree[2 * node + 2]);
+}
+
 
 //--------------------------------------------------------------------------------------------------------------------------------------
 
